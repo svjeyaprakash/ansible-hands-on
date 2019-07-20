@@ -1,0 +1,22 @@
+web1 ansible_ssh_host=10.0.15.21
+web2 ansible_ssh_host=10.0.15.22 
+
+[webserver]
+web1
+web2
+
+[appserver]
+app1 ansible_ssh_host=10.0.15.31
+app2 ansible_ssh_host=10.0.15.32
+
+[dbserver]
+db1 ansible_ssh_host=10.0.15.11
+
+[myallserver:children]
+webserver
+appserver
+dbserver
+
+[myallserver:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant

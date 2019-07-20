@@ -1,0 +1,32 @@
+    
+    ## Hosts
+    web1 ansible_host=10.0.15.21
+    web2 ansible_host=10.0.15.22
+    
+    ## Group & Behaviroal Parameters
+    [lb] 
+    lb1.company.com ansible_ssh_user=aaron ansible_ssh_pass=123 
+    lb2.company.com ansible_python_interpreter=/usr/bin/python
+
+    ## Host Variables
+    [web]
+    web1 http_port=80 maxRequestsPerChild=808
+    web2 http_port=303 maxRequestsPerChild=909
+
+    ## Host patterns
+    [webservers]
+    www[01:50].example.com
+
+    [databases]
+    db-[a:f].example.com
+
+    ## Groups of Groups
+    [datacenter-west:children]
+    lb
+    web 
+    
+    ## Group Variables
+    [datacenter-west:vars]
+    ansible_ssh_user=ansible_user
+    ansible_ssh_pass=#45e!@Gh
+    ntp-server=5.6.7.

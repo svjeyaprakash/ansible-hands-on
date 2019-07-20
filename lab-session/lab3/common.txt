@@ -1,0 +1,7 @@
+ansible web1 -i invetory -m apt -a "name=ntp state=installed" -b
+ansible web1 -i invetory -m copy -a "src=templates/ntp.conf dest=/etc/ntp.conf mode=644 owner=root group=root" --become
+ansible web1 -i invetory -m service -a name=ntp state=restarted --become
+
+ansible all -m shell -a "uptime"
+ansible dbserver -i invetory -m command -a "echo hello"
+script

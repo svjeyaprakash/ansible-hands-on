@@ -1,0 +1,1 @@
+ ansible dbserver -i invetory -m setup -a "filter=ansible_distribution"

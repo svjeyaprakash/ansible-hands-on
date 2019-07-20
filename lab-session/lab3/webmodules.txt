@@ -1,0 +1,6 @@
+ansible web1 -i invetory -m apt -a name=apache2 state=present --become
+ansible web1 -i invetory -m service -a name=apache2 enabled=yes state=started --become
+ansible web1 -i invetory -m shell -a "ps -ef | grep apache"
+ansible web1 -i invetory -m template -a "src=templates/index.j2 dest=/var/www/html/index.html" --become
+ansible web1 -i invetory -m service -a "name=apache2 state=restarted" --become
+ curl -v http://10.0.15.21:80/index.html
